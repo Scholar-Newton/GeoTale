@@ -1,44 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GeoTale – Discover the Story Beneath Your Feet</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GeoTale – Discover the Story Beneath Your Feet</title>
 
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lora:wght@400;700&display=swap" rel="stylesheet">
 
-    <!-- Leaflet CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-        integrity="sha256-uR+z0pT2Z1+J6VdRmGmTJOj4h5HbvsJyDB5kXUnL6kM=" crossorigin="" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="style.css" />
+  <!-- Tailwind Custom Styles -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'geo-blue': '#2563eb',
+            'geo-sand': '#f9f5ec',
+            'geo-brown': '#7c4a25',
+            'geo-gray': '#6b7280',
+            'geo-green': '#3f7c56',
+          },
+          fontFamily: {
+            sans: ['Poppins', 'sans-serif'],
+            serif: ['Lora', 'serif'],
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Leaflet CSS -->
+  <link
+    rel="stylesheet"
+    href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-uR+z0pT2Z1+J6VdRmGmTJOj4h5HbvsJyDB5kXUnL6kM="
+    crossorigin=""
+  />
+
+  <!-- Custom Styles (Optional) -->
+  <link rel="stylesheet" href="style.css" />
 </head>
+<body class="bg-geo-sand text-geo-gray font-sans">
 
-<body class="bg-gray-100 text-gray-800">
+  <!-- Header -->
+  <header class="bg-white shadow p-4 text-center sticky top-0 z-10">
+    <h1 class="text-geo-blue text-4xl font-sans font-bold leading-tight">GeoTale</h1>
+    <p class="text-sm text-geo-gray leading-tight">Discover the story beneath your feet</p>
+  </header>
 
-    <!-- Header -->
-    <header class="text-center p-4 bg-white shadow-md">
-        <h1 class="text-2xl font-bold">📍 GeoTale</h1>
-        <p class="text-sm text-gray-600">Discover the history beneath your feet</p>
-    </header>
+  <!-- Map Container -->
+  <div id="map" class="w-full h-[60vh]"></div>
 
-    <!-- Map -->
-    <div id="map" class="w-full h-[60vh] z-0"></div>
+  <!-- Info Cards Section -->
+  <section id="info-section" class="p-4 space-y-4">
+    <!-- Sample Info Card -->
+    <div class="bg-white rounded-2xl shadow-md p-4 border-l-4 border-geo-blue font-sans">
+      <h2 class="text-xl font-semibold text-geo-blue leading-snug">Old Fort Museum</h2>
+      <p class="text-sm text-geo-gray mt-1 leading-relaxed">
+        This historic fort was built in 1820 and played a key role in colonial defense efforts.
+      </p>
+      <a href="https://en.wikipedia.org/wiki/Fort" target="_blank" class="inline-block mt-2 text-sm text-geo-blue hover:underline">
+        Learn more →
+      </a>
+    </div>
 
-    <!-- Info Section -->v
-    <section class="p-4 space-y-4" id="info-section">
-        <!-- Info cards will be injected here via JS -->
-    </section>
+    <!-- More cards will be appended dynamically by JS -->
+  </section>
 
-    <!-- Leaflet JS -->
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-        integrity="sha256-o9N1jN1kXnOjF1uU7fKi2PQaP6I+2yz3DqBWo8rqDVM=" crossorigin=""></script>
+  <!-- Leaflet JS -->
+  <script
+    src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-o9N1jN1kXnOjF1uU7fKi2PQaP6I+2yz3DqBWo8rqDVM="
+    crossorigin=""
+  ></script>
 
-    <!-- App Script -->
-    <script src="script.js"></script>
+  <!-- App Script -->
+  <script src="script.js"></script>
 </body>
-
 </html>
