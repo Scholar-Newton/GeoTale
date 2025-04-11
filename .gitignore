@@ -1,0 +1,9 @@
+# Ignore Mac system files
+.DS_Store
+
+# Ignore VS Code settings
+.vscode/
+
+# Ignore environment files (in case you add any)
+.env
+.env.local

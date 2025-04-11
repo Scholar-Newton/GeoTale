@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GeoTale – Discover the Story Beneath Your Feet</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-uR+z0pT2Z1+J6VdRmGmTJOj4h5HbvsJyDB5kXUnL6kM=" crossorigin="" />
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- Header -->
+    <header class="text-center p-4 bg-white shadow-md">
+        <h1 class="text-2xl font-bold">📍 GeoTale</h1>
+        <p class="text-sm text-gray-600">Discover the history beneath your feet</p>
+    </header>
+
+    <!-- Map -->
+    <div id="map" class="w-full h-[60vh] z-0"></div>
+
+    <!-- Info Section -->v
+    <section class="p-4 space-y-4" id="info-section">
+        <!-- Info cards will be injected here via JS -->
+    </section>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-o9N1jN1kXnOjF1uU7fKi2PQaP6I+2yz3DqBWo8rqDVM=" crossorigin=""></script>
+
+    <!-- App Script -->
+    <script src="script.js"></script>
+</body>
+
+</html>
