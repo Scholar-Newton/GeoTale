@@ -9,3 +9,7 @@
     transform: rotate(360deg);
   }
 }
+
+body {
+  overscroll-behavior-y: none;
+}

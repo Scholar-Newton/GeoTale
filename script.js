@@ -1,47 +1,124 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const loader = document.getElementById("loader");
+  const loader       = document.getElementById("loader");
+  const searchInput  = document.getElementById("searchLocation");
+  const searchButton = document.getElementById("searchButton");
+  const DEFAULT_RADIUS_KM = 5;
 
-  // Show loader at start
-  loader.style.display = "flex";
+  let mapRef      = null;
+  let userCoords  = null;
+  let markerGroup = null;
 
+  // — Search bar handler —
+  searchButton.addEventListener("click", () => {
+    const query = searchInput.value.trim();
+    if (!query) return alert("Please enter a location to explore.");
+    geocodeAndFetch(query, DEFAULT_RADIUS_KM);
+  });
+
+  // — On load: get user’s location —
   if ("geolocation" in navigator) {
+    loader.style.display = "flex";
     navigator.geolocation.getCurrentPosition(
-      (position) => {
-        const { latitude, longitude } = position.coords;
-        console.log("User location:", latitude, longitude);
-
-        initMap(latitude, longitude);
-
-        // Hide loader after map loads
+      async ({ coords }) => {
+        userCoords = { lat: coords.latitude, lng: coords.longitude };
+        initMap(userCoords.lat, userCoords.lng);
+        addUserMarker(userCoords.lat, userCoords.lng);
+        await fetchNearbyWikipedia(userCoords.lat, userCoords.lng, DEFAULT_RADIUS_KM);
         loader.style.display = "none";
       },
-      (error) => {
-        console.error("Geolocation error:", error.message);
+      err => {
+        console.error("Geolocation error:", err.message);
         alert("Unable to detect your location.");
-        loader.style.display = "none"; // Hide loader on error too
+        loader.style.display = "none";
       },
-      {
-        enableHighAccuracy: true,
-        timeout: 10000,
-        maximumAge: 0,
-      }
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
     );
   } else {
     alert("Geolocation is not supported by your browser.");
-    loader.style.display = "none";
+  }
+
+  // — Initialize Leaflet map with OSM tiles —
+  function initMap(lat, lng) {
+    mapRef = L.map("map").setView([lat, lng], 13);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(mapRef);
+    markerGroup = L.layerGroup().addTo(mapRef);
+  }
+
+  // — Add “You are here” marker —
+  function addUserMarker(lat, lng) {
+    L.marker([lat, lng])
+      .addTo(mapRef)
+      .bindPopup("📍 You are here")
+      .openPopup();
+  }
+
+  // — Fetch nearby Wikipedia articles within given radius (km) —
+  function fetchNearbyWikipedia(lat, lng, radiusKm) {
+    const meters = radiusKm * 1000;
+    return fetch(`https://en.wikipedia.org/w/api.php?` +
+      new URLSearchParams({
+        action:   "query",
+        list:     "geosearch",
+        gscoord:  `${lat}|${lng}`,
+        gsradius: meters,
+        gslimit:  15,
+        format:   "json",
+        origin:   "*"
+      }))
+    .then(r => r.json())
+    .then(data => {
+      const places = data.query.geosearch;
+      renderCards(places);
+      renderMarkers(places);
+    })
+    .catch(err => console.error("Wikipedia fetch error:", err));
+  }
+
+  // — Render info cards —
+  function renderCards(places) {
+    const sec = document.getElementById("info-section");
+    sec.innerHTML = places.length
+      ? places.map(p => `
+          <div class="bg-white rounded-2xl shadow-md p-4 border-l-4 border-geo-blue transition transform hover:scale-105 animate-fadeIn">
+            <h2 class="text-xl font-semibold text-geo-blue">${p.title}</h2>
+            <p class="text-sm text-geo-gray mt-1">Distance: ${Math.round(p.dist)} m</p>
+            <a href="https://en.wikipedia.org/?curid=${p.pageid}" target="_blank"
+               class="mt-2 inline-block text-sm text-geo-blue hover:underline">
+              Learn more →
+            </a>
+          </div>
+        `).join("")
+      : `<div class="text-center text-gray-600">No nearby facts found.</div>`;
+  }
+
+  // — Render map markers for each place —
+  function renderMarkers(places) {
+    markerGroup.clearLayers();
+    places.forEach(p => {
+      L.marker([p.lat, p.lon])
+        .bindPopup(`<strong>${p.title}</strong><br>
+           <a href="https://en.wikipedia.org/?curid=${p.pageid}" target="_blank">Learn more</a>`)
+        .addTo(markerGroup);
+    });
+  }
+
+  // — Geocode a search query and refetch Wikipedia facts —
+  function geocodeAndFetch(query, radiusKm) {
+    const apiKey = "c9b8d53dae804ba2aa28aa8ba6a768fc";
+    fetch(`https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(query)}&key=${apiKey}`)
+      .then(r => r.json())
+      .then(data => {
+        if (!data.results.length) throw new Error("Not found");
+        const { lat, lng } = data.results[0].geometry;
+        userCoords = { lat, lng };
+        mapRef.setView([lat, lng], 13);
+        fetchNearbyWikipedia(lat, lng, radiusKm);
+      })
+      .catch(err => {
+        console.error("OpenCage error:", err);
+        alert("Location not found or an error occurred.");
+      });
   }
 });
-
-// Function to initialize Leaflet map
-function initMap(lat, lng) {
-  const map = L.map("map").setView([lat, lng], 13);
-
-  L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution: '&copy; OpenStreetMap contributors',
-  }).addTo(map);
-
-  L.marker([lat, lng])
-    .addTo(map)
-    .bindPopup("📍 You are here")
-    .openPopup();
-}
