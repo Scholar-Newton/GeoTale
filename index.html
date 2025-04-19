@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GeoTale – Discover the Story Beneath Your Feet</title>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lora:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Lora:wght@400;700&display=swap"
+    rel="stylesheet">
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -31,22 +33,20 @@
       }
     }
   </script>
-  
-  <!-- Leaflet CSS -->
-<link
-rel="stylesheet"
-href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-/>
 
-<!-- Leaflet JS -->
-<script
-src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
-></script>
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
 
   <!-- Custom Styles-->
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body class="bg-geo-sand text-geo-gray font-sans">
 
   <!-- Header -->
@@ -56,7 +56,15 @@ src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
   </header>
 
   <!-- Map Container -->
-  <div id="map" class="w-full h-[60vh]"></div>
+  <div id="map" class="w-full h-[60vh] bg-gray-100 relative z-0">
+    <!-- Loader Overlay -->
+    <div id="loader"
+      class="absolute top-0 left-0 w-full h-[60vh] bg-white bg-opacity-80 flex items-center justify-center z-50">
+      <div class="w-12 h-12 border-4 border-geo-blue border-t-transparent rounded-full animate-spin"></div>
+    </div>
+  </div>
+
+
 
   <!-- Info Cards Section -->
   <section id="info-section" class="p-4 space-y-4">
@@ -66,7 +74,8 @@ src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
       <p class="text-sm text-geo-gray mt-1 leading-relaxed">
         This historic fort was built in 1820 and played a key role in colonial defense efforts.
       </p>
-      <a href="https://en.wikipedia.org/wiki/Fort" target="_blank" class="inline-block mt-2 text-sm text-geo-blue hover:underline">
+      <a href="https://en.wikipedia.org/wiki/Fort" target="_blank"
+        class="inline-block mt-2 text-sm text-geo-blue hover:underline">
         Learn more →
       </a>
     </div>
@@ -74,9 +83,10 @@ src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
     <!-- More cards will be appended dynamically by JS -->
   </section>
 
-  
+
 
   <!-- App Script -->
   <script src="script.js" defer></script>
 </body>
+
 </html>

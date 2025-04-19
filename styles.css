@@ -1,0 +1,11 @@
+#map {
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
