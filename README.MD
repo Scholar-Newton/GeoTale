@@ -1,4 +1,3 @@
-```markdown
 # GeoTale – Discover the Story Beneath Your Feet
 
 GeoTale is a location‑aware web application that transforms everyday places into engaging educational experiences. By detecting your current position (or any place you choose), GeoTale fetches nearby historical landmarks and cultural facts from Wikipedia and displays them on an interactive map and in a scrollable feed.
@@ -93,7 +92,7 @@ https://en.wikipedia.org/w/api.php?
   &format=json
   &origin=*
 ```  
-**Parameters:**  
+ **Parameters:**  
 - `gscoord`: User coordinates  
 - `gsradius`: Search radius in meters  
 - `gslimit`: Maximum number of results  
@@ -132,4 +131,3 @@ https://en.wikipedia.org/w/api.php?
 ---
 
 > Happy hacking! Enjoy uncovering the world’s stories right beneath your feet. 🚀  
-```
