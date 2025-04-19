@@ -1,3 +1,4 @@
+```markdown
 # GeoTale – Discover the Story Beneath Your Feet
 
 GeoTale is a location‑aware web application that transforms everyday places into engaging educational experiences. By detecting your current position (or any place you choose), GeoTale fetches nearby historical landmarks and cultural facts from Wikipedia and displays them on an interactive map and in a scrollable feed.
@@ -40,82 +41,95 @@ GeoTale is a location‑aware web application that transforms everyday places in
    ```bash
    git clone https://github.com/Scholar-Newton/geotale.git
    cd geotale
+   ```
 
-2. **Obtain an OpenCage API key**
--   Sign up at https://opencagedata.com/ (free tier provides 2,500 requests/day). 
+2. **Obtain an OpenCage API key**  
+   Sign up at [OpenCage Data](https://opencagedata.com) (free tier provides 2,500 requests/day).
 
-3. **Configure your API key**
--  Open script.js and locate the line:
+3. **Configure your API key**  
+   Open `script.js` and replace the placeholder with your key:
+   ```js
+   const apiKey = "YOUR_OPENCAGE_API_KEY";
+   ```
 
-  ```bash   
-  const apiKey = "c9b8d53dae804ba2aa28aa8ba6a768fc"; // replace this
-
-
-4. **Serve the application**
--  You can use any static file server. For example, with Python:
-
-     ```bash
+4. **Serve the application**  
+   Use any static file server. For example, with Python:
+   ```bash
    python3 -m http.server 8000
+   ```
+   Then visit [http://localhost:8000](http://localhost:8000) in your browser.
 
--  Then open your browser at http://localhost:8000.
+5. **Allow location access**  
+   When prompted, grant GeoTale permission to use your location.
 
+---
 
-5. **Allow location access**
-  When prompted by the browser, grant GeoTale permission to use your location.
+## 📡 API Usage
 
-##  📡 API Usage
-   **Geolocation API**  
--  Method: navigator.geolocation.getCurrentPosition()
--  Retrieves the user’s latitude and longitude.
+### Geolocation API  
+```js
+navigator.geolocation.getCurrentPosition(successCallback, errorCallback);
+```
+- Retrieves the user’s latitude and longitude.
 
-    **OpenCage Geocoding**
--  Endpoint:
-     ```bash     
-   https://api.opencagedata.com/geocode/v1/json
-  ?q=<LOCATION_QUERY>
-  &key=<YOUR_API_KEY>
+### OpenCage Geocoding  
+**Endpoint:**  
+```
+https://api.opencagedata.com/geocode/v1/json?q=<LOCATION_QUERY>&key=<YOUR_API_KEY>
+```  
+**Parameters:**  
+- `q`: Search string (e.g., “Eiffel Tower, Paris”)  
+- `key`: Your OpenCage API key  
 
-
--  Parameters:
-   -q: search string (e.g., “Eiffel Tower, Paris”)
-   -key: your OpenCage API key 
-
-   **Wikipedia Geosearch API**
--  Endpoint:
-     ```bash
-   https://en.wikipedia.org/w/api.php
-  ?action=query
+### Wikipedia Geosearch API  
+**Endpoint:**  
+```
+https://en.wikipedia.org/w/api.php?
+  action=query
   &list=geosearch
   &gscoord=<LAT>|<LNG>
   &gsradius=<RADIUS_IN_METERS>
   &gslimit=15
   &format=json
   &origin=*
+```  
+**Parameters:**  
+- `gscoord`: User coordinates  
+- `gsradius`: Search radius in meters  
+- `gslimit`: Maximum number of results  
+- `origin=*`: Required to bypass CORS  
 
+---
 
-- Parameters:
-    -gscoord: user coordinates
-    -gsradius: search radius in meters
-    -gslimit: max number of results
-    -origin=*: required to bypass CORS
+## 🖼️ Screenshots & Demo GIF
 
-##  🖼️ Screenshots & Demo GIF     
-   **Light Mode – Map View**
+> Place your images in a `screenshots/` folder and update the paths below.
 
-   **Dark Mode – Facts Feed**
+- **Light Mode – Map View**  
+  `screenshots/map-light.png`
 
-   **Demo GIF**
+- **Dark Mode – Facts Feed**  
+  `screenshots/facts-dark.png`
 
-##  👩‍💻 Developer Notes
--   Extensibility:
-      -You can swap in a different geocoding or tile provider (e.g., Mapbox) by changing one line in initMap().
-      -Wikipedia calls could be extended to pull images or extract summaries via the Wikimedia REST API.   
+- **Demo GIF**  
+  `screenshots/demo.gif`
 
--   Offline Fallback (stretch goal):
-       -Cache recent fetches in localStorage so users can revisit previously viewed locations without an internet connection.
+---
 
--   Accessibility:             
-        -All interactive elements have focus states and ARIA labels.
-        -The layout is keyboard‑navigable and mobile‑friendly.
+## 👩‍💻 Developer Notes
 
-        Happy hacking! Enjoy uncovering the world’s stories right beneath your feet. 🚀
+- **Extensibility**  
+  - Swap in a different geocoding or tile provider (e.g., Mapbox) by changing one line in `initMap()`.  
+  - Extend Wikipedia calls to pull images or summaries via the Wikimedia REST API.
+
+- **Offline Fallback (stretch goal)**  
+  - Cache recent fetches in `localStorage` for offline revisiting of previously viewed locations.
+
+- **Accessibility**  
+  - All interactive elements include focus states and ARIA labels.  
+  - Layout is fully keyboard‑navigable and mobile‑friendly.
+
+---
+
+> Happy hacking! Enjoy uncovering the world’s stories right beneath your feet. 🚀  
+```
