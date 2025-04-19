@@ -40,17 +40,40 @@ GeoTale is a location‑aware web application that transforms everyday places in
    ```bash
    git clone https://github.com/your‑username/geotale.git
    cd geotale
-   Get an OpenCage API key
-Sign up at https://opencagedata.com (free tier allows 2,500 requests/day).
+  
+2. **Get an OpenCage API key**
+ Sign up at https://opencagedata.com (free tier allows 2,500 requests/day).
 
-2. Configure the API key
-
-3. In script.js, find the line near the bottom:
+3. **Configure the API key**
+ In script.js, find the line near the bottom:
    const apiKey = "c9b8d53dae804ba2aa28aa8ba6a768fc"; // replace this
    Replace the string with your own key.
 
-4. Serve the files
+4. **Serve the files**
    You can use any static‑file server. For example, with Python:
    ```bash
    python3 -m http.server 8000
+   Then visit http://localhost:8000.
 
+5. **Allow location access**
+   When prompted by your browser, allow GeoTale to use your location.
+
+##    API Usage
+   **Geolocation API**
+   ```bash
+    navigator.geolocation.getCurrentPosition()
+
+    Retrieves the user’s latitude and longitude.
+
+    **OpenCage Geocoding**
+     Endpoint: https://api.opencagedata.com/geocode/v1/json
+
+    Query parameters:
+        q: the location string (city, address, landmark)
+        key: your API key
+
+Example request:
+```bash
+    GET https://api.opencagedata.com/geocode/v1/json
+    ?q=Eiffel+Tower+Paris
+    &key=YOUR_API_KEY
