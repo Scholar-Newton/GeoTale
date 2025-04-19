@@ -54,10 +54,11 @@ GeoTale is a location‑aware web application that transforms everyday places in
 4. **Serve the application**
 -  You can use any static file server. For example, with Python:
 
-   ```bash
+     ```bash
    python3 -m http.server 8000
 
 -  Then open your browser at http://localhost:8000.
+
 
 5. **Allow location access**
   When prompted by the browser, grant GeoTale permission to use your location.
@@ -69,10 +70,11 @@ GeoTale is a location‑aware web application that transforms everyday places in
 
     **OpenCage Geocoding**
 -  Endpoint:
-   ```bash     
+     ```bash     
    https://api.opencagedata.com/geocode/v1/json
   ?q=<LOCATION_QUERY>
   &key=<YOUR_API_KEY>
+
 
 -  Parameters:
    -q: search string (e.g., “Eiffel Tower, Paris”)
@@ -80,7 +82,7 @@ GeoTale is a location‑aware web application that transforms everyday places in
 
    **Wikipedia Geosearch API**
 -  Endpoint:
-   ```bash
+     ```bash
    https://en.wikipedia.org/w/api.php
   ?action=query
   &list=geosearch
@@ -89,6 +91,7 @@ GeoTale is a location‑aware web application that transforms everyday places in
   &gslimit=15
   &format=json
   &origin=*
+
 
 - Parameters:
     -gscoord: user coordinates
