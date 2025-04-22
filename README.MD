@@ -88,10 +88,11 @@ GeoTale is a location‑aware web app that turns any place into an educational a
 _Place images in `screenshots/` and update paths below._
 
 - **Light Mode – Map View**  
-  ![Map View (light mode)](<screenshots\Screenshot GeoTale (light mode).png>)
+  ![Map View (light mode)](screenshots/Screenshot%20GeoTale%20%28light%20mode%29.png)
+
 
 - **Dark Mode – Facts Feed**  
-  !Map View (dark mode)](<screenshots\Screenshot GeoTale (dark mode).png>)
+  !Map View (dark mode)](screenshots\Screenshot%20GeoTal%20%28dark%20mode%29.png)
 - **Demo Video**  
   `screenshots/demo.mp4`
 
