@@ -1,3 +1,4 @@
+`
 # GeoTale – Discover the Story Beneath Your Feet
 
 GeoTale is a location‑aware web application that transforms everyday places into engaging educational experiences. By detecting your current position (or any place you choose), GeoTale fetches nearby historical landmarks and cultural facts from Wikipedia and displays them on an interactive map and in a scrollable feed.
@@ -9,6 +10,36 @@ GeoTale is a location‑aware web application that transforms everyday places in
 - **Connect** people with the hidden stories around them  
 - **Educate** users on local history and culture in a fun, bite‑sized way  
 - **Explore** any location—your current position or anywhere in the world  
+
+---
+
+## Why Use GeoTale?
+
+GeoTale isn't just another map—it's your personal **cultural guide**, **history teacher**, and **exploration companion** all in one. Here’s why it’s worth adding to your digital toolkit:
+
+### 🌍 Discover Hidden Stories
+GeoTale transforms any location into a gateway to history. Whether you're walking through your hometown or traveling abroad, uncover fascinating facts and forgotten tales about the places around you.
+
+### 🎓 Learn As You Explore
+Powered by Wikipedia, GeoTale delivers bite-sized knowledge that’s easy to digest. Great for curious minds, students, or families wanting to make every walk more educational.
+
+### 🔎 Explore the World From Anywhere
+Not traveling? No problem. Use the search bar to teleport to any place on the planet and instantly discover what makes it special.
+
+### 🗺️ Interactive Map + Fact Feed
+See everything on a clean, intuitive map with pins and popups—plus a scrollable feed of nearby points of interest with distances and links to learn more.
+
+### 🌓 Light & Dark Mode
+Day or night, GeoTale adapts to your environment and preference with a sleek dark/light mode toggle—saved automatically for your convenience.
+
+### 💻 No App Install Needed
+GeoTale is a **Progressive Web App (PWA)**—just add it to your home screen from your browser and use it like a native app.
+
+### 🔐 Privacy-Friendly
+GeoTale only uses your location *in the moment*—it doesn’t store or share any data. No signups, no tracking.
+
+### ⚡ Lightweight & Fast
+Optimized for low-resource environments—perfect for use even on older devices or slow networks.
 
 ---
 
@@ -36,8 +67,7 @@ GeoTale is a location‑aware web application that transforms everyday places in
 
 ## ⚙️ Setup Instructions
 
-1. **Clone the repository**  
-   ```bash
+1. **Clone the repository**     ```bash
    git clone https://github.com/Scholar-Newton/geotale.git
    cd geotale
    ```
@@ -100,18 +130,18 @@ https://en.wikipedia.org/w/api.php?
 
 ---
 
-## 🖼️ Screenshots & Demo GIF
+## 🖼️ Screenshots & Demo Video
 
 > Place your images in a `screenshots/` folder and update the paths below.
 
 - **Light Mode – Map View**  
-  `screenshots/map-light.png`
+  `screenshots\Screenshot GeoTale ( light mode).png`
 
 - **Dark Mode – Facts Feed**  
-  `screenshots/facts-dark.png`
+  `screenshots\Screenshot GeoTale ( light mode).png`
 
 - **Demo GIF**  
-  `screenshots/demo.gif`
+  `screenshots\demo-video.mp4`
 
 ---
 
